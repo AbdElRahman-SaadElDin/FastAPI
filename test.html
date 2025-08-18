@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Medical Reminder API Tester</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #f5f5f5;
+      }
+      .container {
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+      }
+      .endpoint {
+        border: 1px solid #ddd;
+        padding: 15px;
+        margin: 10px 0;
+        border-radius: 5px;
+        background-color: #fafafa;
+      }
+      .endpoint h3 {
+        margin-top: 0;
+        color: #333;
+      }
+      button {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        margin: 5px;
+      }
+      button:hover {
+        background-color: #0056b3;
+      }
+      .response {
+        background-color: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 5px;
+        padding: 10px;
+        margin-top: 10px;
+        white-space: pre-wrap;
+        font-family: monospace;
+        max-height: 300px;
+        overflow-y: auto;
+      }
+      input,
+      textarea {
+        width: 100%;
+        padding: 8px;
+        margin: 5px 0;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        box-sizing: border-box;
+      }
+      textarea {
+        height: 100px;
+        resize: vertical;
+      }
+      .success {
+        color: #28a745;
+      }
+      .error {
+        color: #dc3545;
+      }
+      .warning {
+        color: #ffc107;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>🏥 Medical Reminder API Tester</h1>
+      <p>Test your deployed API endpoints directly from the browser.</p>
+
+      <div class="endpoint">
+        <h3>🔗 API Base URL</h3>
+        <input
+          type="text"
+          id="baseUrl"
+          placeholder="https://your-domain.vercel.app"
+          value="https://your-domain.vercel.app"
+        />
+        <button onclick="testConnection()">Test Connection</button>
+        <div
+          id="connectionResponse"
+          class="response"
+          style="display: none"
+        ></div>
+      </div>
+    </div>
+
+    <div class="container">
+      <h2>📋 GET Endpoints</h2>
+
+      <div class="endpoint">
+        <h3>Get All Doctors</h3>
+        <button onclick="getDoctors()">Get Doctors</button>
+        <div id="doctorsResponse" class="response" style="display: none"></div>
+      </div>
+
+      <div class="endpoint">
+        <h3>Get All Patients</h3>
+        <button onclick="getPatients()">Get Patients</button>
+        <div id="patientsResponse" class="response" style="display: none"></div>
+      </div>
+
+      <div class="endpoint">
+        <h3>Get Patient-Doctor Relationships</h3>
+        <button onclick="getRelationships()">Get Relationships</button>
+        <div
+          id="relationshipsResponse"
+          class="response"
+          style="display: none"
+        ></div>
+      </div>
+    </div>
+
+    <div class="container">
+      <h2>➕ POST Endpoints</h2>
+
+      <div class="endpoint">
+        <h3>Create New Doctor</h3>
+        <textarea id="doctorData" placeholder="Enter doctor JSON data">
+{
+  "code": "DOC123",
+  "name": "Dr. Sarah Johnson",
+  "Age": 35,
+  "phone": "+1234567890",
+  "profession": "Cardiologist",
+  "specialty": "Cardiology",
+  "gender": "female",
+  "email": "sarah.johnson@example.com",
+  "password": "securepassword123",
+  "country": "USA",
+  "city": "New York"
+}</textarea
+        >
+        <button onclick="createDoctor()">Create Doctor</button>
+        <div
+          id="createDoctorResponse"
+          class="response"
+          style="display: none"
+        ></div>
+      </div>
+
+      <div class="endpoint">
+        <h3>Create New Patient</h3>
+        <textarea id="patientData" placeholder="Enter patient JSON data">
+{
+  "email": "john.doe@example.com",
+  "name": "John Doe",
+  "age": 28,
+  "phone": "+1987654321",
+  "password": "patientpass123",
+  "country": "USA"
+}</textarea
+        >
+        <button onclick="createPatient()">Create Patient</button>
+        <div
+          id="createPatientResponse"
+          class="response"
+          style="display: none"
+        ></div>
+      </div>
+
+      <div class="endpoint">
+        <h3>Create Patient-Doctor Relationship</h3>
+        <textarea
+          id="relationshipData"
+          placeholder="Enter relationship JSON data"
+        >
+{
+  "doctor_code": "DOC123",
+  "patient_phone": "+1987654321"
+}</textarea
+        >
+        <button onclick="createRelationship()">Create Relationship</button>
+        <div
+          id="createRelationshipResponse"
+          class="response"
+          style="display: none"
+        ></div>
+      </div>
+    </div>
+
+    <div class="container">
+      <h2>🔄 PUT Endpoints</h2>
+
+      <div class="endpoint">
+        <h3>Update Doctor</h3>
+        <input
+          type="text"
+          id="updateDoctorCode"
+          placeholder="Doctor Code (e.g., DOC123)"
+        />
+        <textarea id="updateDoctorData" placeholder="Enter update data">
+{
+  "specialty": "Pediatric Cardiology",
+  "city": "Boston"
+}</textarea
+        >
+        <button onclick="updateDoctor()">Update Doctor</button>
+        <div
+          id="updateDoctorResponse"
+          class="response"
+          style="display: none"
+        ></div>
+      </div>
+
+      <div class="endpoint">
+        <h3>Update Patient</h3>
+        <input
+          type="text"
+          id="updatePatientEmail"
+          placeholder="Patient Email"
+        />
+        <textarea id="updatePatientData" placeholder="Enter update data">
+{
+  "age": 29,
+  "country": "Canada"
+}</textarea
+        >
+        <button onclick="updatePatient()">Update Patient</button>
+        <div
+          id="updatePatientResponse"
+          class="response"
+          style="display: none"
+        ></div>
+      </div>
+    </div>
+
+    <div class="container">
+      <h2>🗑️ DELETE Endpoints</h2>
+
+      <div class="endpoint">
+        <h3>Delete Doctor</h3>
+        <input type="text" id="deleteDoctorCode" placeholder="Doctor Code" />
+        <button onclick="deleteDoctor()">Delete Doctor</button>
+        <div
+          id="deleteDoctorResponse"
+          class="response"
+          style="display: none"
+        ></div>
+      </div>
+
+      <div class="endpoint">
+        <h3>Delete Patient</h3>
+        <input
+          type="text"
+          id="deletePatientEmail"
+          placeholder="Patient Email"
+        />
+        <button onclick="deletePatient()">Delete Patient</button>
+        <div
+          id="deletePatientResponse"
+          class="response"
+          style="display: none"
+        ></div>
+      </div>
+    </div>
+
+    <script>
+      const baseUrl = document.getElementById("baseUrl");
+
+      function showResponse(elementId, data, isError = false) {
+        const element = document.getElementById(elementId);
+        element.style.display = "block";
+        element.textContent = JSON.stringify(data, null, 2);
+        element.className = `response ${isError ? "error" : "success"}`;
+      }
+
+      function hideResponse(elementId) {
+        document.getElementById(elementId).style.display = "none";
+      }
+
+      async function makeRequest(url, options = {}) {
+        try {
+          const response = await fetch(url, {
+            headers: {
+              "Content-Type": "application/json",
+              ...options.headers,
+            },
+            ...options,
+          });
+
+          const data = await response.json();
+
+          if (!response.ok) {
+            throw new Error(
+              `HTTP ${response.status}: ${data.detail || "Unknown error"}`
+            );
+          }
+
+          return data;
+        } catch (error) {
+          throw error;
+        }
+      }
+
+      async function testConnection() {
+        try {
+          const data = await makeRequest(`${baseUrl.value}/`);
+          showResponse("connectionResponse", data);
+        } catch (error) {
+          showResponse("connectionResponse", { error: error.message }, true);
+        }
+      }
+
+      async function getDoctors() {
+        try {
+          const data = await makeRequest(`${baseUrl.value}/doctors`);
+          showResponse("doctorsResponse", data);
+        } catch (error) {
+          showResponse("doctorsResponse", { error: error.message }, true);
+        }
+      }
+
+      async function getPatients() {
+        try {
+          const data = await makeRequest(`${baseUrl.value}/patients`);
+          showResponse("patientsResponse", data);
+        } catch (error) {
+          showResponse("patientsResponse", { error: error.message }, true);
+        }
+      }
+
+      async function getRelationships() {
+        try {
+          const data = await makeRequest(`${baseUrl.value}/patient-doctor`);
+          showResponse("relationshipsResponse", data);
+        } catch (error) {
+          showResponse("relationshipsResponse", { error: error.message }, true);
+        }
+      }
+
+      async function createDoctor() {
+        try {
+          const doctorData = JSON.parse(
+            document.getElementById("doctorData").value
+          );
+          const data = await makeRequest(`${baseUrl.value}/doctors`, {
+            method: "POST",
+            body: JSON.stringify(doctorData),
+          });
+          showResponse("createDoctorResponse", data);
+        } catch (error) {
+          showResponse("createDoctorResponse", { error: error.message }, true);
+        }
+      }
+
+      async function createPatient() {
+        try {
+          const patientData = JSON.parse(
+            document.getElementById("patientData").value
+          );
+          const data = await makeRequest(`${baseUrl.value}/patients`, {
+            method: "POST",
+            body: JSON.stringify(patientData),
+          });
+          showResponse("createPatientResponse", data);
+        } catch (error) {
+          showResponse("createPatientResponse", { error: error.message }, true);
+        }
+      }
+
+      async function createRelationship() {
+        try {
+          const relationshipData = JSON.parse(
+            document.getElementById("relationshipData").value
+          );
+          const data = await makeRequest(`${baseUrl.value}/patient-doctor`, {
+            method: "POST",
+            body: JSON.stringify(relationshipData),
+          });
+          showResponse("createRelationshipResponse", data);
+        } catch (error) {
+          showResponse(
+            "createRelationshipResponse",
+            { error: error.message },
+            true
+          );
+        }
+      }
+
+      async function updateDoctor() {
+        try {
+          const doctorCode = document.getElementById("updateDoctorCode").value;
+          const updateData = JSON.parse(
+            document.getElementById("updateDoctorData").value
+          );
+          const data = await makeRequest(
+            `${baseUrl.value}/doctors/${doctorCode}`,
+            {
+              method: "PUT",
+              body: JSON.stringify(updateData),
+            }
+          );
+          showResponse("updateDoctorResponse", data);
+        } catch (error) {
+          showResponse("updateDoctorResponse", { error: error.message }, true);
+        }
+      }
+
+      async function updatePatient() {
+        try {
+          const patientEmail =
+            document.getElementById("updatePatientEmail").value;
+          const updateData = JSON.parse(
+            document.getElementById("updatePatientData").value
+          );
+          const data = await makeRequest(
+            `${baseUrl.value}/patients/${patientEmail}`,
+            {
+              method: "PUT",
+              body: JSON.stringify(updateData),
+            }
+          );
+          showResponse("updatePatientResponse", data);
+        } catch (error) {
+          showResponse("updatePatientResponse", { error: error.message }, true);
+        }
+      }
+
+      async function deleteDoctor() {
+        try {
+          const doctorCode = document.getElementById("deleteDoctorCode").value;
+          const data = await makeRequest(
+            `${baseUrl.value}/doctors/${doctorCode}`,
+            {
+              method: "DELETE",
+            }
+          );
+          showResponse("deleteDoctorResponse", data);
+        } catch (error) {
+          showResponse("deleteDoctorResponse", { error: error.message }, true);
+        }
+      }
+
+      async function deletePatient() {
+        try {
+          const patientEmail =
+            document.getElementById("deletePatientEmail").value;
+          const data = await makeRequest(
+            `${baseUrl.value}/patients/${patientEmail}`,
+            {
+              method: "DELETE",
+            }
+          );
+          showResponse("deletePatientResponse", data);
+        } catch (error) {
+          showResponse("deletePatientResponse", { error: error.message }, true);
+        }
+      }
+
+      // Auto-test connection on page load
+      window.addEventListener("load", () => {
+        if (
+          baseUrl.value &&
+          baseUrl.value !== "https://your-domain.vercel.app"
+        ) {
+          testConnection();
+        }
+      });
+    </script>
+  </body>
+</html>
