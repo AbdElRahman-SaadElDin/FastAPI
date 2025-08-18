@@ -25,7 +25,7 @@ class PatientInfo(BaseModel):
     gender: str
     profession: str
     age: int
-    cases: List[Case]
+    cases: List[Case] = []
 
     class Config:
         allow_population_by_field_name = True
