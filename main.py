@@ -79,7 +79,8 @@ _in_memory_data = {
             "age": 23,
             "phone": "+201205621566",
             "password": "SaadSaadSaad@@777",
-            "country": "Egypt"
+            "country": "Egypt",
+            "drCodes": ["EGP12Hop676"]
         }
     ],
     "patient-doctor": [
@@ -537,6 +538,134 @@ async def delete_patient_diagnosis(doctor_code: str, patient_phone: str, diagnos
     
     save_data(data)
     return {"message": "Diagnosis deleted successfully", "deleted_diagnosis": deleted_diagnosis}
+
+# Patient Doctor Codes Management Endpoints
+@app.get("/patients/{phone}/drCodes")
+async def get_patient_doctor_codes(phone: str):
+    """Get all doctor codes for a specific patient"""
+    data = load_data()
+    
+    patient = next((p for p in data["patients"] if p["phone"] == phone), None)
+    if not patient:
+        raise HTTPException(status_code=404, detail="Patient not found")
+    
+    return {"phone": phone, "drCodes": patient.get("drCodes", [])}
+
+@app.post("/patients/{phone}/drCodes", status_code=status.HTTP_201_CREATED)
+async def add_doctor_code_to_patient(phone: str, doctor_code: str):
+    """Add a doctor code to a patient's drCodes list"""
+    data = load_data()
+    
+    patient_index = next((i for i, p in enumerate(data["patients"]) if p["phone"] == phone), None)
+    if patient_index is None:
+        raise HTTPException(status_code=404, detail="Patient not found")
+    
+    # Check if doctor exists
+    doctor = next((d for d in data["doctors"] if d["code"] == doctor_code), None)
+    if not doctor:
+        raise HTTPException(status_code=404, detail="Doctor not found")
+    
+    # Initialize drCodes list if it doesn't exist
+    if "drCodes" not in data["patients"][patient_index]:
+        data["patients"][patient_index]["drCodes"] = []
+    
+    # Check if doctor code already exists
+    if doctor_code in data["patients"][patient_index]["drCodes"]:
+        raise HTTPException(status_code=400, detail="Doctor code already exists for this patient")
+    
+    # Add doctor code
+    data["patients"][patient_index]["drCodes"].append(doctor_code)
+    
+    # Also create patient-doctor relationship
+    new_relationship = {
+        "doctor-code": doctor_code,
+        "patient-phone": phone
+    }
+    
+    # Check if relationship already exists
+    if not any(pd["doctor-code"] == doctor_code and pd["patient-phone"] == phone 
+               for pd in data["patient-doctor"]):
+        data["patient-doctor"].append(new_relationship)
+    
+    save_data(data)
+    return {"message": "Doctor code added successfully", "phone": phone, "drCodes": data["patients"][patient_index]["drCodes"]}
+
+@app.put("/patients/{phone}/drCodes")
+async def update_patient_doctor_codes(phone: str, dr_codes: List[str]):
+    """Replace all doctor codes for a patient"""
+    data = load_data()
+    
+    patient_index = next((i for i, p in enumerate(data["patients"]) if p["phone"] == phone), None)
+    if patient_index is None:
+        raise HTTPException(status_code=404, detail="Patient not found")
+    
+    # Validate that all doctor codes exist
+    for doctor_code in dr_codes:
+        doctor = next((d for d in data["doctors"] if d["code"] == doctor_code), None)
+        if not doctor:
+            raise HTTPException(status_code=404, detail=f"Doctor with code {doctor_code} not found")
+    
+    # Update drCodes
+    data["patients"][patient_index]["drCodes"] = dr_codes
+    
+    # Update patient-doctor relationships
+    # Remove existing relationships for this patient
+    data["patient-doctor"] = [pd for pd in data["patient-doctor"] if pd["patient-phone"] != phone]
+    
+    # Add new relationships
+    for doctor_code in dr_codes:
+        new_relationship = {
+            "doctor-code": doctor_code,
+            "patient-phone": phone
+        }
+        data["patient-doctor"].append(new_relationship)
+    
+    save_data(data)
+    return {"message": "Doctor codes updated successfully", "phone": phone, "drCodes": dr_codes}
+
+@app.delete("/patients/{phone}/drCodes")
+async def delete_all_patient_doctor_codes(phone: str):
+    """Delete all doctor codes for a patient"""
+    data = load_data()
+    
+    patient_index = next((i for i, p in enumerate(data["patients"]) if p["phone"] == phone), None)
+    if patient_index is None:
+        raise HTTPException(status_code=404, detail="Patient not found")
+    
+    # Get current drCodes before deletion
+    current_dr_codes = data["patients"][patient_index].get("drCodes", [])
+    
+    # Remove all drCodes
+    data["patients"][patient_index]["drCodes"] = []
+    
+    # Remove all patient-doctor relationships for this patient
+    data["patient-doctor"] = [pd for pd in data["patient-doctor"] if pd["patient-phone"] != phone]
+    
+    save_data(data)
+    return {"message": "All doctor codes deleted successfully", "phone": phone, "deleted_drCodes": current_dr_codes}
+
+@app.delete("/patients/{phone}/drCodes/{doctor_code}")
+async def delete_specific_patient_doctor_code(phone: str, doctor_code: str):
+    """Delete a specific doctor code from a patient"""
+    data = load_data()
+    
+    patient_index = next((i for i, p in enumerate(data["patients"]) if p["phone"] == phone), None)
+    if patient_index is None:
+        raise HTTPException(status_code=404, detail="Patient not found")
+    
+    # Check if drCodes exists and contains the doctor code
+    if "drCodes" not in data["patients"][patient_index] or doctor_code not in data["patients"][patient_index]["drCodes"]:
+        raise HTTPException(status_code=404, detail="Doctor code not found for this patient")
+    
+    # Remove the specific doctor code
+    data["patients"][patient_index]["drCodes"].remove(doctor_code)
+    
+    # Remove the specific patient-doctor relationship
+    data["patient-doctor"] = [pd for pd in data["patient-doctor"] 
+                             if not (pd["doctor-code"] == doctor_code and pd["patient-phone"] == phone)]
+    
+    save_data(data)
+    return {"message": "Doctor code deleted successfully", "phone": phone, "drCodes": data["patients"][patient_index]["drCodes"]}
 
 if __name__ == "__main__":
     import uvicorn

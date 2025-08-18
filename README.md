@@ -24,10 +24,16 @@ A FastAPI-based REST API for managing doctors, patients, and medical records.
 ### Patients
 
 - `GET /patients` - Get all patients
-- `GET /patients/{patient_email}` - Get specific patient
+
+- `GET /patients/{patient_email}` - Get specific patient by email
 - `POST /patients` - Create new patient
-- `PUT /patients/{patient_email}` - Update patient
-- `DELETE /patients/{patient_email}` - Delete patient
+- `PUT /patients/{patient_email}` - Update patient by email
+- `DELETE /patients/{patient_email}` - Delete patient by email
+
+- `GET /patients/phone/{patient_phone}` - Get specific patient by phone number
+- `POST /patients/phone/{patient_phone}` - Create new patient with specified phone number
+- `PUT /patients/phone/{patient_phone}` - Update patient by phone number
+- `DELETE /patients/phone/{patient_phone}` - Delete patient by phone number
 
 ### Authentication Checks
 
@@ -52,6 +58,14 @@ A FastAPI-based REST API for managing doctors, patients, and medical records.
 - `GET /doctors/{doctor_code}/patients/{patient_phone}/diagnosis` - Get all diagnoses for a patient
 - `POST /doctors/{doctor_code}/patients/{patient_phone}/diagnosis` - Add new diagnosis to patient
 - `DELETE /doctors/{doctor_code}/patients/{patient_phone}/diagnosis` - Delete specific diagnosis from patient
+
+### Patient Doctor Codes
+
+- `GET /patients/{phone}/drCodes` - Get all doctor codes for a specific patient
+- `POST /patients/{phone}/drCodes` - Add a doctor code to a patient's drCodes list
+- `PUT /patients/{phone}/drCodes` - Replace all doctor codes for a patient
+- `DELETE /patients/{phone}/drCodes` - Delete all doctor codes for a patient
+- `DELETE /patients/{phone}/drCodes/{doctor_code}` - Delete a specific doctor code from a patient
 
 ## Deployment to Vercel
 
@@ -182,7 +196,8 @@ Once deployed, you can access:
   "age": "integer",
   "phone": "string",
   "password": "string",
-  "country": "string"
+  "country": "string",
+  "drCodes": ["string"]
 }
 ```
 
@@ -240,6 +255,45 @@ curl "https://your-domain.vercel.app/doctors/EGP12Hop676"
 curl "https://your-domain.vercel.app/doctors/EGP12Hop676/patients/+201205621566"
 ```
 
+### Get Patient by Phone Number
+
+```bash
+curl "https://your-domain.vercel.app/patients/phone/+201205621566"
+```
+
+### Create Patient with Phone Number
+
+```bash
+curl -X POST "https://your-domain.vercel.app/patients/phone/+201234567890" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "email": "newpatient@example.com",
+    "name": "John Smith",
+    "age": 30,
+    "phone": "+201234567890",
+    "password": "securepassword",
+    "country": "Egypt"
+  }'
+```
+
+### Update Patient by Phone Number
+
+```bash
+curl -X PUT "https://your-domain.vercel.app/patients/phone/+201205621566" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "Updated Name",
+    "age": 25,
+    "country": "Egypt"
+  }'
+```
+
+### Delete Patient by Phone Number
+
+```bash
+curl -X DELETE "https://your-domain.vercel.app/patients/phone/+201205621566"
+```
+
 ### Get Patient Diagnoses
 
 ```bash
@@ -271,6 +325,89 @@ curl -X DELETE "https://your-domain.vercel.app/doctors/EGP12Hop676/patients/+201
 
 ```bash
 curl -X DELETE "https://your-domain.vercel.app/doctors/EGP12Hop676/patients/+201205621566"
+```
+
+### Get Patient Doctor Codes
+
+```bash
+curl "https://your-domain.vercel.app/patients/+201205621566/drCodes"
+```
+
+Response:
+
+```json
+{
+  "phone": "+201205621566",
+  "drCodes": ["EGP12Hop676"]
+}
+```
+
+### Add Doctor Code to Patient
+
+```bash
+curl -X POST "https://your-domain.vercel.app/patients/+201205621566/drCodes" \
+  -H "Content-Type: application/json" \
+  -d '"EGP12Hop676"'
+```
+
+Response:
+
+```json
+{
+  "message": "Doctor code added successfully",
+  "phone": "+201205621566",
+  "drCodes": ["EGP12Hop676"]
+}
+```
+
+### Update All Doctor Codes for Patient
+
+```bash
+curl -X PUT "https://your-domain.vercel.app/patients/+201205621566/drCodes" \
+  -H "Content-Type: application/json" \
+  -d '["EGP12Hop676", "NEWDOC123"]'
+```
+
+Response:
+
+```json
+{
+  "message": "Doctor codes updated successfully",
+  "phone": "+201205621566",
+  "drCodes": ["EGP12Hop676", "NEWDOC123"]
+}
+```
+
+### Delete All Doctor Codes for Patient
+
+```bash
+curl -X DELETE "https://your-domain.vercel.app/patients/+201205621566/drCodes"
+```
+
+Response:
+
+```json
+{
+  "message": "All doctor codes deleted successfully",
+  "phone": "+201205621566",
+  "deleted_drCodes": ["EGP12Hop676", "NEWDOC123"]
+}
+```
+
+### Delete Specific Doctor Code from Patient
+
+```bash
+curl -X DELETE "https://your-domain.vercel.app/patients/+201205621566/drCodes/EGP12Hop676"
+```
+
+Response:
+
+```json
+{
+  "message": "Doctor code deleted successfully",
+  "phone": "+201205621566",
+  "drCodes": ["NEWDOC123"]
+}
 ```
 
 ## Support
