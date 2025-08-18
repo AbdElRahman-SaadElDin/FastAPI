@@ -390,20 +390,26 @@ async def delete_patient_doctor_relationship(doctor_code: str, patient_phone: st
     return {"message": "Relationship deleted successfully", "deleted_relationship": deleted_relationship}
 
 # Additional endpoints for patient management within doctor records
+import uuid
+
 @app.post("/doctors/{doctor_code}/patients", status_code=status.HTTP_201_CREATED)
 async def add_patient_to_doctor(doctor_code: str, patient_info: PatientInfo):
     """Add a patient to a doctor's patient list"""
     data = load_data()
-    
+
     doctor_index = next((i for i, d in enumerate(data["doctors"]) if d["code"] == doctor_code), None)
     if doctor_index is None:
         raise HTTPException(status_code=404, detail="Doctor not found")
-    
-    # Check if patient already exists in doctor's list
-    if any(p["id"] == patient_info.id for p in data["doctors"][doctor_index]["patient"]):
+
+    # Generate a unique id for the new patient
+    generated_id = str(uuid.uuid4())
+
+    # Check if patient already exists in doctor's list by phone (since id is now generated)
+    if any(p["phone"] == patient_info.phone for p in data["doctors"][doctor_index]["patient"]):
         raise HTTPException(status_code=400, detail="Patient already exists in doctor's list")
-    
+
     new_patient_info = patient_info.dict()
+    new_patient_info["id"] = generated_id
     data["doctors"][doctor_index]["patient"].append(new_patient_info)
     save_data(data)
     return {"message": "Patient added to doctor successfully", "patient": new_patient_info}
