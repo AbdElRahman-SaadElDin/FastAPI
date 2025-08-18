@@ -277,6 +277,73 @@ async def delete_patient(patient_email: str):
     save_data(data)
     return {"message": "Patient deleted successfully", "deleted_patient": deleted_patient}
 
+# Patient endpoints using phone number as identifier
+@app.get("/patients/phone/{patient_phone}", response_model=Patient)
+async def get_patient_by_phone(patient_phone: str):
+    """Get a specific patient by phone number"""
+    data = load_data()
+    patient = next((p for p in data["patients"] if p["phone"] == patient_phone), None)
+    if not patient:
+        raise HTTPException(status_code=404, detail="Patient not found")
+    return patient
+
+@app.post("/patients/phone/{patient_phone}", response_model=Patient, status_code=status.HTTP_201_CREATED)
+async def create_patient_by_phone(patient_phone: str, patient: CreatePatient):
+    """Create a new patient with specified phone number"""
+    data = load_data()
+    
+    # Check if patient phone already exists
+    if any(p["phone"] == patient_phone for p in data["patients"]):
+        raise HTTPException(status_code=400, detail="Patient phone already exists")
+    
+    # Check if patient email already exists
+    if any(p["email"] == patient.email for p in data["patients"]):
+        raise HTTPException(status_code=400, detail="Patient email already exists")
+    
+    new_patient = patient.dict()
+    new_patient["phone"] = patient_phone  # Override phone with the path parameter
+    data["patients"].append(new_patient)
+    save_data(data)
+    return new_patient
+
+@app.put("/patients/phone/{patient_phone}", response_model=Patient)
+async def update_patient_by_phone(patient_phone: str, patient_update: UpdatePatient):
+    """Update a patient by phone number"""
+    data = load_data()
+    
+    patient_index = next((i for i, p in enumerate(data["patients"]) if p["phone"] == patient_phone), None)
+    if patient_index is None:
+        raise HTTPException(status_code=404, detail="Patient not found")
+    
+    # Update only provided fields
+    patient_dict = patient_update.dict(exclude_unset=True)
+    data["patients"][patient_index].update(patient_dict)
+    
+    save_data(data)
+    return data["patients"][patient_index]
+
+@app.delete("/patients/phone/{patient_phone}")
+async def delete_patient_by_phone(patient_phone: str):
+    """Delete a patient by phone number"""
+    data = load_data()
+    
+    patient_index = next((i for i, p in enumerate(data["patients"]) if p["phone"] == patient_phone), None)
+    if patient_index is None:
+        raise HTTPException(status_code=404, detail="Patient not found")
+    
+    # Remove patient
+    deleted_patient = data["patients"].pop(patient_index)
+    
+    # Remove related patient-doctor relationships
+    data["patient-doctor"] = [pd for pd in data["patient-doctor"] if pd["patient-phone"] != patient_phone]
+    
+    # Remove patient from doctor's patient lists
+    for doctor in data["doctors"]:
+        doctor["patient"] = [p for p in doctor["patient"] if p["phone"] != patient_phone]
+    
+    save_data(data)
+    return {"message": "Patient deleted successfully", "deleted_patient": deleted_patient}
+
 # Patient-Doctor relationship endpoints
 @app.get("/patient-doctor", response_model=List[PatientDoctor])
 async def get_patient_doctor_relationships():
