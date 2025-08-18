@@ -40,7 +40,7 @@ _in_memory_data = {
                 {
                     "id": "141516",
                     "name": "Mazen Ahmed",
-                    "date of admission": "2025-08-20T10:30:00Z",
+                    "dateOfAdmission": "2025-08-20T10:30:00Z",
                     "phone": "+201205621566",
                     "country": "Egypt",
                     "gender": "male",
