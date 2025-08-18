@@ -51,7 +51,7 @@ class Patient(BaseModel):
     phone: str
     password: str
     country: str
-    drCodes: List[str]
+    drCodes: Optional[List[str]] = []
 
 class PatientDoctor(BaseModel):
     doctor_code: str = Field(..., alias="doctor-code")
