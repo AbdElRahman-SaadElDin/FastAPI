@@ -12,6 +12,7 @@ class Diagnosis(BaseModel):
 
     class Config:
         allow_population_by_field_name = True
+        populate_by_name = True
 
 class Case(BaseModel):
     diagnosis: List[Diagnosis]
@@ -19,7 +20,7 @@ class Case(BaseModel):
 class PatientInfo(BaseModel):
     id: str
     name: str
-    date_of_admission: str = Field(..., alias="date of admission")
+    dateOfAdmission: str
     phone: str
     country: str
     gender: str
@@ -29,6 +30,7 @@ class PatientInfo(BaseModel):
 
     class Config:
         allow_population_by_field_name = True
+        populate_by_name = True
 
 class Doctor(BaseModel):
     code: str
@@ -59,6 +61,7 @@ class PatientDoctor(BaseModel):
 
     class Config:
         allow_population_by_field_name = True
+        populate_by_name = True
 
 # Create models (for POST requests)
 class CreateDoctor(BaseModel):
@@ -113,6 +116,7 @@ class CreateDiagnosis(BaseModel):
 
     class Config:
         allow_population_by_field_name = True
+        populate_by_name = True
 
 class CreateCase(BaseModel):
     diagnosis: List[CreateDiagnosis]
@@ -120,7 +124,7 @@ class CreateCase(BaseModel):
 class CreatePatientInfo(BaseModel):
     id: str
     name: str
-    date_of_admission: str = Field(..., alias="date of admission")
+    dateOfAdmission: str
     phone: str
     country: str
     gender: str
@@ -130,3 +134,4 @@ class CreatePatientInfo(BaseModel):
 
     class Config:
         allow_population_by_field_name = True
+        populate_by_name = True
