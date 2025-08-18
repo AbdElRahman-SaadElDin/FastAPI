@@ -74,7 +74,7 @@ _in_memory_data = {
     ],
     "patients": [
         {
-            "email": "mazen",
+            "email": "mazen@gmail.com",
             "name": "Mazen Ahmed",
             "age": 23,
             "phone": "+201205621566",
