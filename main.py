@@ -3,7 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from typing import List
 import json
 import os
-from models import Doctor, Patient, PatientDoctor, Diagnosis, Case, PatientInfo, CreateDoctor, CreatePatient, UpdateDoctor, UpdatePatient
+from models import Doctor, Patient, PatientDoctor, Diagnosis, Case, PatientInfo, CreateDoctor, CreatePatient, UpdateDoctor, UpdatePatient, UpdatePatientInfo
 
 app = FastAPI(
     title="Medical Reminder API",
@@ -23,73 +23,178 @@ app.add_middleware(
 # In-memory data storage (for Vercel serverless environment)
 # Note: This data will be reset on each deployment
 _in_memory_data = {
-    "doctors": [
+  "doctors": [
+    {
+      "code": "EGP12Hop676",
+      "name": "AbdElRahman Mohamed Saad-ElDin",
+      "Age": 24,
+      "phone": "+201119944899",
+      "profession": "Software Engineer",
+      "specialty": "Data Science",
+      "gender": "male",
+      "email": "abdelrahmansaad@gmail.com",
+      "password": "SaadSaadSaad@@777",
+      "country": "Egypt",
+      "city": "Alexandria",
+      "patient": [
         {
-            "code": "EGP12Hop676",
-            "name": "AbdElRahman Mohamed Saad-ElDin",
-            "Age": 24,
-            "phone": "+201119944899",
-            "profession": "Software Engineer",
-            "specialty": "Data Science",
-            "gender": "male",
-            "email": "abdelrahmansaad@gmail.com",
-            "password": "SaadSaadSaad@@777",
-            "country": "Egypt",
-            "city": "Alexandria",
-            "patient": [
+          "id": "141516",
+          "name": "Mazen Ahmed",
+          "dateOfAdmission": "2025-08-20T10:30:00Z",
+          "phone": "+201205621566",
+          "country": "Egypt",
+          "gender": "male",
+          "profession": "frontend",
+          "age": 23,
+          "cases": [
+            {
+              "diagnosis": [
                 {
-                    "id": "141516",
-                    "name": "Mazen Ahmed",
-                    "dateOfAdmission": "2025-08-20T10:30:00Z",
-                    "phone": "+201205621566",
-                    "country": "Egypt",
-                    "gender": "male",
-                    "profession": "frontend",
-                    "age": 23,
-                    "cases": [
-                        {
-                            "diagnosis": [
-                                {
-                                    "diagnosis": "Type 2 Diabetes Mellitus",
-                                    "prognosis": "With adherence to medication, lifestyle modifications, and regular follow-ups, the patient can maintain good glycemic control and prevent long-term complications.",
-                                    "medical-report": "Patient exhibits elevated fasting blood glucose levels over the past 3 months. HbA1c is 7.5%. No signs of diabetic retinopathy. Blood pressure is within normal range.",
-                                    "medical-treatment": "Metformin 500mg twice daily, dietary modifications, regular exercise, and quarterly check-ups.",
-                                    "schedule": "2025-08-20T10:30:00Z",
-                                    "complaint": "Frequent urination, increased thirst, and fatigue."
-                                },
-                                {
-                                    "diagnosis": "Acute Bronchitis",
-                                    "prognosis": "Condition is self-limiting in most cases and expected to improve within 1–3 weeks with treatment and rest. Low risk of complications if managed appropriately.",
-                                    "medical-report": "Patient presents with persistent cough for the past 10 days, mild fever (37.8°C), and chest congestion. No signs of pneumonia on chest X-ray. Oxygen saturation at 98%.",
-                                    "medical-treatment": "Prescribed Amoxicillin 500mg three times daily for 7 days, increased fluid intake, and rest.",
-                                    "schedule": "2025-08-22T09:15:00Z",
-                                    "complaint": "Persistent cough, mild fever, and difficulty breathing during physical activity."
-                                }
-                            ]
-                        }
-                    ]
+                  "diagnosis": "Type 2 Diabetes Mellitus",
+                  "prognosis": "With adherence to medication, lifestyle modifications, and regular follow-ups, the patient can maintain good glycemic control and prevent long-term complications.",
+                  "medical-report": "Patient exhibits elevated fasting blood glucose levels over the past 3 months. HbA1c is 7.5%. No signs of diabetic retinopathy. Blood pressure is within normal range.",
+                  "medical-treatment": "Metformin 500mg twice daily, dietary modifications, regular exercise, and quarterly check-ups.",
+                  "schedule": "2025-08-20T10:30:00Z",
+                  "complaint": "Frequent urination, increased thirst, and fatigue."
+                },
+                {
+                  "diagnosis": "Acute Bronchitis",
+                  "prognosis": "Condition is self-limiting in most cases and expected to improve within 1–3 weeks with treatment and rest. Low risk of complications if managed appropriately.",
+                  "medical-report": "Patient presents with persistent cough for the past 10 days, mild fever (37.8°C), and chest congestion. No signs of pneumonia on chest X-ray. Oxygen saturation at 98%.",
+                  "medical-treatment": "Prescribed Amoxicillin 500mg three times daily for 7 days, increased fluid intake, and rest.",
+                  "schedule": "2025-08-22T09:15:00Z",
+                  "complaint": "Persistent cough, mild fever, and difficulty breathing during physical activity."
                 }
-            ]
+              ]
+            }
+          ]
         }
-    ],
-    "patients": [
+      ]
+    },
+    {
+      "code": "EGP45Med123",
+      "name": "Dr. Salma Hassan",
+      "Age": 35,
+      "phone": "+201224587412",
+      "profession": "Doctor",
+      "specialty": "Cardiology",
+      "gender": "female",
+      "email": "salma.hassan@hospital.com",
+      "password": "SalmaCardio@@2025",
+      "country": "Egypt",
+      "city": "Cairo",
+      "patient": [
         {
-            "email": "mazen@gmail.com",
-            "name": "Mazen Ahmed",
-            "age": 23,
-            "phone": "+201205621566",
-            "password": "SaadSaadSaad@@777",
-            "country": "Egypt",
-            "drCodes": ["EGP12Hop676"]
+          "id": "202589",
+          "name": "Omar Ali",
+          "dateOfAdmission": "2025-07-10T11:00:00Z",
+          "phone": "+201005698741",
+          "country": "Egypt",
+          "gender": "male",
+          "profession": "Teacher",
+          "age": 40,
+          "cases": [
+            {
+              "diagnosis": [
+                {
+                  "diagnosis": "Hypertension",
+                  "prognosis": "With proper lifestyle modifications and regular medication adherence, blood pressure can be controlled and cardiovascular risk reduced.",
+                  "medical-report": "Patient has recorded consistent BP readings of 150/95 mmHg over the last month. ECG shows no abnormalities. Cholesterol levels slightly elevated.",
+                  "medical-treatment": "Prescribed Amlodipine 5mg daily, dietary salt reduction, and daily 30-min walks.",
+                  "schedule": "2025-07-15T09:00:00Z",
+                  "complaint": "Headaches, dizziness, occasional blurred vision."
+                }
+              ]
+            }
+          ]
         }
-    ],
-    "patient-doctor": [
+      ]
+    },
+    {
+      "code": "EGP78Derm999",
+      "name": "Dr. Karim El-Sayed",
+      "Age": 42,
+      "phone": "+201334785215",
+      "profession": "Doctor",
+      "specialty": "Dermatology",
+      "gender": "male",
+      "email": "karim.derma@hospital.com",
+      "password": "DermaKarim@@2025",
+      "country": "Egypt",
+      "city": "Giza",
+      "patient": [
         {
-            "doctor-code": "EGP12Hop676",
-            "patient-phone": "+201205621566"
+          "id": "304522",
+          "name": "Sara Mohamed",
+          "dateOfAdmission": "2025-06-05T08:45:00Z",
+          "phone": "+201114785236",
+          "country": "Egypt",
+          "gender": "female",
+          "profession": "Designer",
+          "age": 29,
+          "cases": [
+            {
+              "diagnosis": [
+                {
+                  "diagnosis": "Eczema",
+                  "prognosis": "Condition can be managed with topical treatment and lifestyle adjustments. Recurrence possible with triggers.",
+                  "medical-report": "Patient presents with itchy, red patches on forearm and neck. No infection signs. Family history of allergies noted.",
+                  "medical-treatment": "Topical corticosteroid cream twice daily, avoid allergens and harsh soaps.",
+                  "schedule": "2025-06-08T14:20:00Z",
+                  "complaint": "Persistent itching, redness, skin dryness."
+                }
+              ]
+            }
+          ]
         }
-    ]
+      ]
+    }
+  ],
+  "patients": [
+    {
+      "email": "mazen@gmail.com",
+      "name": "Mazen Ahmed",
+      "age": 23,
+      "phone": "+201205621566",
+      "password": "SaadSaadSaad@@777",
+      "country": "Egypt",
+      "drCodes": ["EGP12Hop676"]
+    },
+    {
+      "email": "omar.ali@gmail.com",
+      "name": "Omar Ali",
+      "age": 40,
+      "phone": "+201005698741",
+      "password": "OmarAli123@@",
+      "country": "Egypt",
+      "drCodes": ["EGP45Med123"]
+    },
+    {
+      "email": "sara.mohamed@gmail.com",
+      "name": "Sara Mohamed",
+      "age": 29,
+      "phone": "+201114785236",
+      "password": "SaraDerma2025@@",
+      "country": "Egypt",
+      "drCodes": ["EGP78Derm999"]
+    }
+  ],
+  "patient-doctor": [
+    {
+      "doctor-code": "EGP12Hop676",
+      "patient-phone": "+201205621566"
+    },
+    {
+      "doctor-code": "EGP45Med123",
+      "patient-phone": "+201005698741"
+    },
+    {
+      "doctor-code": "EGP78Derm999",
+      "patient-phone": "+201114785236"
+    }
+  ]
 }
+
 
 def load_data():
     """Load data from in-memory storage"""
@@ -438,6 +543,27 @@ async def get_doctor_patient(doctor_code: str, patient_phone: str):
     
     return patient
 
+@app.put("/doctors/{doctor_code}/patients/{patient_phone}")
+async def update_doctor_patient(doctor_code: str, patient_phone: str, patient_update: UpdatePatientInfo):
+    """Update a specific patient in a doctor's patient list"""
+    data = load_data()
+    
+    doctor_index = next((i for i, d in enumerate(data["doctors"]) if d["code"] == doctor_code), None)
+    if doctor_index is None:
+        raise HTTPException(status_code=404, detail="Doctor not found")
+    
+    patient_index = next((i for i, p in enumerate(data["doctors"][doctor_index]["patient"]) 
+                         if p["phone"] == patient_phone), None)
+    if patient_index is None:
+        raise HTTPException(status_code=404, detail="Patient not found in doctor's list")
+    
+    # Update only provided fields
+    patient_dict = patient_update.dict(exclude_unset=True)
+    data["doctors"][doctor_index]["patient"][patient_index].update(patient_dict)
+    
+    save_data(data)
+    return {"message": "Patient updated successfully", "patient": data["doctors"][doctor_index]["patient"][patient_index]}
+
 @app.delete("/doctors/{doctor_code}/patients/{patient_phone}")
 async def delete_doctor_patient(doctor_code: str, patient_phone: str):
     """Delete a specific patient from a doctor's patient list"""
@@ -454,7 +580,6 @@ async def delete_doctor_patient(doctor_code: str, patient_phone: str):
     
     deleted_patient = data["doctors"][doctor_index]["patient"].pop(patient_index)
     
-    # Also remove from patient-doctor relationships
     data["patient-doctor"] = [pd for pd in data["patient-doctor"] 
                              if not (pd["doctor-code"] == doctor_code and pd["patient-phone"] == patient_phone)]
     
