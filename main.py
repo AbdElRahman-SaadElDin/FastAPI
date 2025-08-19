@@ -170,23 +170,8 @@ async def update_doctor(doctor_code: str, doctor_update: UpdateDoctor):
     save_data(data)
     return data["doctors"][doctor_index]
 
-@app.delete("/doctors/{doctor_code}")
-async def delete_doctor(doctor_code: str):
-    """Delete a doctor"""
-    data = load_data()
-    
-    doctor_index = next((i for i, d in enumerate(data["doctors"]) if d["code"] == doctor_code), None)
-    if doctor_index is None:
-        raise HTTPException(status_code=404, detail="Doctor not found")
-    
-    # Remove doctor
-    deleted_doctor = data["doctors"].pop(doctor_index)
-    
-    # Remove related patient-doctor relationships
-    data["patient-doctor"] = [pd for pd in data["patient-doctor"] if pd["doctor-code"] != doctor_code]
-    
-    save_data(data)
-    return {"message": "Doctor deleted successfully", "deleted_doctor": deleted_doctor}
+# Note: More specific routes should come before general ones to avoid routing conflicts
+# This endpoint is moved after the more specific doctor-patient endpoints
 
 # Patient endpoints
 @app.get("/patients", response_model=List[Patient])
@@ -683,6 +668,25 @@ async def delete_specific_patient_doctor_code(phone: str, doctor_code: str):
     
     save_data(data)
     return {"message": "Doctor code deleted successfully", "phone": phone, "drCodes": data["patients"][patient_index]["drCodes"]}
+
+# General doctor deletion endpoint (moved to end to avoid routing conflicts)
+@app.delete("/doctors/{doctor_code}")
+async def delete_doctor(doctor_code: str):
+    """Delete a doctor"""
+    data = load_data()
+    
+    doctor_index = next((i for i, d in enumerate(data["doctors"]) if d["code"] == doctor_code), None)
+    if doctor_index is None:
+        raise HTTPException(status_code=404, detail="Doctor not found")
+    
+    # Remove doctor
+    deleted_doctor = data["doctors"].pop(doctor_index)
+    
+    # Remove related patient-doctor relationships
+    data["patient-doctor"] = [pd for pd in data["patient-doctor"] if pd["doctor-code"] != doctor_code]
+    
+    save_data(data)
+    return {"message": "Doctor deleted successfully", "deleted_doctor": deleted_doctor}
 
 if __name__ == "__main__":
     import uvicorn
