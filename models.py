@@ -135,3 +135,13 @@ class CreatePatientInfo(BaseModel):
     class Config:
         allow_population_by_field_name = True
         populate_by_name = True
+
+# Update model for patient info within doctor's patient list (for PATCH requests)
+class UpdatePatientInfo(BaseModel):
+    name: Optional[str] = None
+    dateOfAdmission: Optional[str] = None
+    phone: Optional[str] = None
+    country: Optional[str] = None
+    gender: Optional[str] = None
+    profession: Optional[str] = None
+    age: Optional[int] = None
