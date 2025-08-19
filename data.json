@@ -16,7 +16,7 @@
         {
           "id": "141516",
           "name": "Mazen Ahmed",
-          "date of admission": "2025-08-20T10:30:00Z",
+          "dateOfAdmission": "2025-08-20T10:30:00Z",
           "phone": "+201205621566",
           "country": "Egypt",
           "gender": "male",
@@ -50,12 +50,13 @@
   ],
   "patients": [
     {
-      "email": "mazen",
+      "email": "mazen@gmail.com",
       "name": "Mazen Ahmed",
       "age": 23,
       "phone": "+201205621566",
       "password": "SaadSaadSaad@@777",
-      "country": "Egypt"
+      "country": "Egypt",
+      "drCodes": ["EGP12Hop676"]
     }
   ],
   "patient-doctor": [

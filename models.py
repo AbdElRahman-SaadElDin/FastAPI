@@ -18,7 +18,7 @@ class Case(BaseModel):
     diagnosis: List[Diagnosis]
 
 class PatientInfo(BaseModel):
-    id: str
+    id: Optional[str] = None
     name: str
     dateOfAdmission: str
     phone: str
@@ -122,7 +122,7 @@ class CreateCase(BaseModel):
     diagnosis: List[CreateDiagnosis]
 
 class CreatePatientInfo(BaseModel):
-    id: str
+    id: Optional[str] = None
     name: str
     dateOfAdmission: str
     phone: str

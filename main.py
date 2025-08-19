@@ -20,8 +20,8 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# In-memory data storage (for Vercel serverless environment)
-# Note: This data will be reset on each deployment
+# Initial data storage (fallback when JSON file doesn't exist)
+# This data will be used as a backup if the JSON file is missing or corrupted
 _in_memory_data = {
     "doctors": [
         {
@@ -92,18 +92,59 @@ _in_memory_data = {
 }
 
 def load_data():
-    """Load data from in-memory storage"""
-    return _in_memory_data.copy()
+    """Load data from JSON file with fallback to in-memory storage"""
+    try:
+        with open("data.json", "r", encoding="utf-8") as f:
+            data = json.load(f)
+            print("Data loaded successfully from data.json")
+            return data
+    except FileNotFoundError:
+        print("data.json not found, using initial data")
+        # Initialize the JSON file with initial data
+        save_data(_in_memory_data)
+        return _in_memory_data.copy()
+    except json.JSONDecodeError as e:
+        print(f"Error reading data.json: {e}, using initial data")
+        return _in_memory_data.copy()
 
 def save_data(data):
-    """Save data to in-memory storage"""
+    """Save data to JSON file and update in-memory storage"""
     global _in_memory_data
-    _in_memory_data = data.copy()
+    try:
+        with open("data.json", "w", encoding="utf-8") as f:
+            json.dump(data, f, indent=2, ensure_ascii=False)
+        _in_memory_data = data.copy()
+        print("Data saved successfully to data.json")
+    except Exception as e:
+        # If file write fails, still update in-memory storage
+        _in_memory_data = data.copy()
+        print(f"Warning: Could not save to file: {e}")
+        print("Data updated in memory only")
+
+@app.on_event("startup")
+async def startup_event():
+    """Initialize data on startup"""
+    print("Starting Medical Reminder API...")
+    # Load data to ensure JSON file exists
+    load_data()
+    print("Data initialization complete")
 
 @app.get("/")
 async def root():
     """Root endpoint"""
     return {"message": "Medical Reminder API is running"}
+
+@app.get("/status")
+async def get_status():
+    """Get current data status"""
+    data = load_data()
+    return {
+        "message": "Data status",
+        "doctors_count": len(data.get("doctors", [])),
+        "patients_count": len(data.get("patients", [])),
+        "relationships_count": len(data.get("patient-doctor", [])),
+        "data_source": "JSON file" if os.path.exists("data.json") else "In-memory"
+    }
 
 # Doctor endpoints
 @app.get("/doctors", response_model=List[Doctor])
@@ -530,7 +571,6 @@ async def delete_patient_diagnosis(doctor_code: str, patient_phone: str, diagnos
     patient = data["doctors"][doctor_index]["patient"][patient_index]
     deleted_diagnosis = None
     
-    # Find and remove the diagnosis from all cases
     for case in patient["cases"]:
         for i, diagnosis in enumerate(case["diagnosis"]):
             if diagnosis["diagnosis"] == diagnosis_name:
