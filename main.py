@@ -14,11 +14,34 @@ app = FastAPI(
 # Add CORS middleware
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=[
+        "http://localhost:3000", 
+        "https://localhost:3000", 
+        "http://127.0.0.1:3000", 
+        "https://127.0.0.1:3000",
+        "http://localhost:3001", 
+        "https://localhost:3001", 
+        "http://127.0.0.1:3001", 
+        "https://127.0.0.1:3001",
+        "http://localhost:5173",
+        "https://localhost:5173",
+        "http://127.0.0.1:5173",
+        "https://127.0.0.1:5173",
+        "https://fast-api-dnk5.vercel.app",
+        "https://*.vercel.app",
+        "http://192.168.1.5:3000",
+        "*"
+    ],
     allow_credentials=True,
-    allow_methods=["*"],
+    allow_methods=["GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH", "*"],
     allow_headers=["*"],
+    expose_headers=["*"]
 )
+
+# Handle OPTIONS requests for CORS preflight
+@app.options("/{full_path:path}")
+async def options_handler(full_path: str):
+    return {"message": "OK"}
 
 # In-memory data storage (for Vercel serverless environment)
 # Note: This data will be reset on each deployment
