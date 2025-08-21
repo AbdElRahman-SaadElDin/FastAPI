@@ -3158,7 +3158,7 @@ async def create_doctor(doctor: CreateDoctor):
         raise HTTPException(status_code=400, detail="Doctor email already exists")
     
     # Create new doctor with empty patient list
-    new_doctor = doctor.dict()
+    new_doctor = doctor.model_dump()
     new_doctor["patient"] = []
     
     data["doctors"].append(new_doctor)
@@ -3175,7 +3175,7 @@ async def update_doctor(doctor_code: str, doctor_update: UpdateDoctor):
         raise HTTPException(status_code=404, detail="Doctor not found")
     
     # Update only provided fields
-    doctor_dict = doctor_update.dict(exclude_unset=True)
+    doctor_dict = doctor_update.model_dump(exclude_unset=True)
     data["doctors"][doctor_index].update(doctor_dict)
     
     save_data(data)
@@ -3231,7 +3231,7 @@ async def create_patient(patient: CreatePatient):
     if any(p["email"] == patient.email for p in data["patients"]):
         raise HTTPException(status_code=400, detail="Patient email already exists")
     
-    new_patient = patient.dict()
+    new_patient = patient.model_dump()
     data["patients"].append(new_patient)
     save_data(data)
     return new_patient
@@ -3246,7 +3246,7 @@ async def update_patient(patient_email: str, patient_update: UpdatePatient):
         raise HTTPException(status_code=404, detail="Patient not found")
     
     # Update only provided fields
-    patient_dict = patient_update.dict(exclude_unset=True)
+    patient_dict = patient_update.model_dump(exclude_unset=True)
     data["patients"][patient_index].update(patient_dict)
     
     save_data(data)
@@ -3309,7 +3309,7 @@ async def create_patient_by_phone(patient_phone: str, patient: CreatePatient):
     if any(p["email"] == patient.email for p in data["patients"]):
         raise HTTPException(status_code=400, detail="Patient email already exists")
     
-    new_patient = patient.dict()
+    new_patient = patient.model_dump()
     new_patient["phone"] = patient_phone  # Override phone with the path parameter
     data["patients"].append(new_patient)
     save_data(data)
@@ -3325,7 +3325,7 @@ async def update_patient_by_phone(patient_phone: str, patient_update: UpdatePati
         raise HTTPException(status_code=404, detail="Patient not found")
     
     # Update only provided fields
-    patient_dict = patient_update.dict(exclude_unset=True)
+    patient_dict = patient_update.model_dump(exclude_unset=True)
     data["patients"][patient_index].update(patient_dict)
     
     save_data(data)
@@ -3375,7 +3375,7 @@ async def create_patient_doctor_relationship(relationship: PatientDoctor):
            for pd in data["patient-doctor"]):
         raise HTTPException(status_code=400, detail="Relationship already exists")
     
-    new_relationship = relationship.dict()
+    new_relationship = relationship.model_dump()
     new_relationship["doctor-code"] = relationship.doctor_code
     new_relationship["patient-phone"] = relationship.patient_phone
     
@@ -3416,7 +3416,7 @@ async def add_patient_to_doctor(doctor_code: str, patient_info: PatientInfo):
     if any(p["phone"] == patient_info.phone for p in data["doctors"][doctor_index]["patient"]):
         raise HTTPException(status_code=400, detail="Patient already exists in doctor's list")
 
-    new_patient_info = patient_info.dict()
+    new_patient_info = patient_info.model_dump()
     new_patient_info["id"] = generated_id
     data["doctors"][doctor_index]["patient"].append(new_patient_info)
     save_data(data)
@@ -3464,7 +3464,7 @@ async def update_doctor_patient(doctor_code: str, patient_phone: str, patient_up
         raise HTTPException(status_code=404, detail="Patient not found in doctor's list")
     
     # Update only provided fields
-    patient_dict = patient_update.dict(exclude_unset=True)
+    patient_dict = patient_update.model_dump(exclude_unset=True)
     data["doctors"][doctor_index]["patient"][patient_index].update(patient_dict)
     
     save_data(data)
@@ -3535,7 +3535,7 @@ async def add_patient_diagnosis(doctor_code: str, patient_phone: str, diagnosis:
         patient["cases"] = [{"diagnosis": []}]
     
     # Add diagnosis to the first case
-    new_diagnosis = diagnosis.dict()
+    new_diagnosis = diagnosis.model_dump()
     patient["cases"][0]["diagnosis"].append(new_diagnosis)
     
     save_data(data)
