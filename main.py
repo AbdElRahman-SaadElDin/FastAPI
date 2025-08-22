@@ -92,17 +92,6 @@ _in_memory_data = {
             }
           ]
         },
-        
-  {
-    "id": "141516",
-    "name": "Mazen Ahmed",
-    "dateOfAdmission": "2025-08-20T10:30:00Z",
-    "phone": "+201205621566",
-    "country": "Egypt",
-    "gender": "male",
-    "profession": "frontend",
-    "age": 23
-  },
   {
     "id": "141517",
     "name": "Layla Hassan",
@@ -111,7 +100,8 @@ _in_memory_data = {
     "country": "Egypt",
     "gender": "female",
     "profession": "ux designer",
-    "age": 28
+    "age": 28,
+      "cases": []
   },
   {
     "id": "141518",
@@ -121,7 +111,8 @@ _in_memory_data = {
     "country": "Egypt",
     "gender": "male",
     "profession": "backend",
-    "age": 32
+    "age": 32,
+      "cases": []
   },
   {
     "id": "141519",
@@ -131,7 +122,8 @@ _in_memory_data = {
     "country": "Egypt",
     "gender": "male",
     "profession": "fullstack",
-    "age": 26
+    "age": 26,
+      "cases": []
   },
   {
     "id": "141520",
@@ -141,7 +133,8 @@ _in_memory_data = {
     "country": "Egypt",
     "gender": "female",
     "profession": "frontend",
-    "age": 24
+    "age": 24,
+      "cases": []
   },
   {
     "id": "141521",
@@ -151,7 +144,8 @@ _in_memory_data = {
     "country": "Egypt",
     "gender": "male",
     "profession": "devops",
-    "age": 30
+    "age": 30,
+      "cases": []
   },
   {
     "id": "141522",
@@ -161,7 +155,8 @@ _in_memory_data = {
     "country": "Egypt",
     "gender": "female",
     "profession": "data scientist",
-    "age": 27
+    "age": 27,
+      "cases": []
   },
   {
     "id": "141523",
@@ -171,7 +166,8 @@ _in_memory_data = {
     "country": "Egypt",
     "gender": "male",
     "profession": "backend",
-    "age": 29
+    "age": 29,
+      "cases": []
   },
   {
     "id": "141524",
@@ -181,7 +177,8 @@ _in_memory_data = {
     "country": "Egypt",
     "gender": "female",
     "profession": "frontend",
-    "age": 25
+    "age": 25,
+      "cases": []
   },
   {
     "id": "141525",
@@ -191,7 +188,8 @@ _in_memory_data = {
     "country": "Egypt",
     "gender": "male",
     "profession": "mobile developer",
-    "age": 31
+    "age": 31,
+      "cases": []
   },
   {
     "id": "141526",
@@ -201,7 +199,8 @@ _in_memory_data = {
     "country": "Egypt",
     "gender": "female",
     "profession": "ux designer",
-    "age": 26
+    "age": 26,
+      "cases": []
   },
   {
     "id": "141527",
@@ -211,7 +210,8 @@ _in_memory_data = {
     "country": "Egypt",
     "gender": "male",
     "profession": "backend",
-    "age": 33
+    "age": 33,
+      "cases": []
   },
   {
     "id": "141528",
@@ -221,7 +221,8 @@ _in_memory_data = {
     "country": "Egypt",
     "gender": "female",
     "profession": "frontend",
-    "age": 24
+    "age": 24,
+      "cases": []
   },
   {
     "id": "141529",
@@ -231,7 +232,8 @@ _in_memory_data = {
     "country": "Egypt",
     "gender": "male",
     "profession": "fullstack",
-    "age": 28
+    "age": 28,
+      "cases": []
   },
   {
     "id": "141530",
@@ -241,7 +243,8 @@ _in_memory_data = {
     "country": "Egypt",
     "gender": "female",
     "profession": "data analyst",
-    "age": 26
+    "age": 26,
+      "cases": []
   },
   {
     "id": "141531",
@@ -251,7 +254,8 @@ _in_memory_data = {
     "country": "Egypt",
     "gender": "male",
     "profession": "devops",
-    "age": 32
+    "age": 32,
+      "cases": []
   },
   {
     "id": "141532",
@@ -261,7 +265,8 @@ _in_memory_data = {
     "country": "Egypt",
     "gender": "female",
     "profession": "frontend",
-    "age": 23
+    "age": 23,
+      "cases": []
   },
   {
     "id": "141533",
@@ -271,7 +276,8 @@ _in_memory_data = {
     "country": "Egypt",
     "gender": "male",
     "profession": "backend",
-    "age": 29
+    "age": 29,
+      "cases": []
   },
   {
     "id": "141534",
@@ -281,7 +287,8 @@ _in_memory_data = {
     "country": "Egypt",
     "gender": "female",
     "profession": "ux designer",
-    "age": 27
+    "age": 27,
+      "cases": []
   },
   {
     "id": "141535",
@@ -291,7 +298,8 @@ _in_memory_data = {
     "country": "Egypt",
     "gender": "male",
     "profession": "fullstack",
-    "age": 30
+    "age": 30,
+      "cases": []
   },
   {
     "id": "141536",
@@ -301,7 +309,8 @@ _in_memory_data = {
     "country": "Egypt",
     "gender": "female",
     "profession": "frontend",
-    "age": 25
+    "age": 25,
+      "cases": []
   },
   {
     "id": "141537",
@@ -311,7 +320,8 @@ _in_memory_data = {
     "country": "Egypt",
     "gender": "male",
     "profession": "mobile developer",
-    "age": 31
+    "age": 31,
+      "cases": []
   },
   {
     "id": "141538",
@@ -321,7 +331,8 @@ _in_memory_data = {
     "country": "Egypt",
     "gender": "female",
     "profession": "data scientist",
-    "age": 28
+    "age": 28,
+      "cases": []
   },
   {
     "id": "141539",
@@ -331,7 +342,8 @@ _in_memory_data = {
     "country": "Egypt",
     "gender": "male",
     "profession": "backend",
-    "age": 33
+    "age": 33,
+      "cases": []
   },
   {
     "id": "141540",
@@ -341,7 +353,8 @@ _in_memory_data = {
     "country": "Egypt",
     "gender": "female",
     "profession": "frontend",
-    "age": 24
+    "age": 24,
+      "cases": []
   },
   {
     "id": "141541",
@@ -351,7 +364,8 @@ _in_memory_data = {
     "country": "Egypt",
     "gender": "male",
     "profession": "devops",
-    "age": 32
+    "age": 32,
+      "cases": []
   },
   {
     "id": "141542",
@@ -361,7 +375,8 @@ _in_memory_data = {
     "country": "Egypt",
     "gender": "female",
     "profession": "ux designer",
-    "age": 26
+    "age": 26,
+      "cases": []
   },
   {
     "id": "141543",
@@ -371,7 +386,8 @@ _in_memory_data = {
     "country": "Egypt",
     "gender": "male",
     "profession": "fullstack",
-    "age": 29
+    "age": 29,
+      "cases": []
   },
   {
     "id": "141544",
@@ -381,7 +397,8 @@ _in_memory_data = {
     "country": "Egypt",
     "gender": "female",
     "profession": "frontend",
-    "age": 23
+    "age": 23,
+      "cases": []
   },
   {
     "id": "141545",
@@ -391,7 +408,8 @@ _in_memory_data = {
     "country": "Egypt",
     "gender": "male",
     "profession": "backend",
-    "age": 30
+    "age": 30,
+      "cases": []
   },
   {
     "id": "141546",
@@ -401,7 +419,8 @@ _in_memory_data = {
     "country": "Egypt",
     "gender": "female",
     "profession": "data analyst",
-    "age": 27
+    "age": 27,
+      "cases": []
   },
   {
     "id": "141547",
@@ -411,7 +430,8 @@ _in_memory_data = {
     "country": "Egypt",
     "gender": "male",
     "profession": "mobile developer",
-    "age": 31
+    "age": 31,
+      "cases": []
   },
   {
     "id": "141548",
@@ -421,7 +441,8 @@ _in_memory_data = {
     "country": "Egypt",
     "gender": "female",
     "profession": "frontend",
-    "age": 25
+    "age": 25,
+      "cases": []
   },
   {
     "id": "141549",
@@ -431,7 +452,8 @@ _in_memory_data = {
     "country": "Egypt",
     "gender": "male",
     "profession": "backend",
-    "age": 33
+    "age": 33,
+      "cases": []
   },
   {
     "id": "141550",
@@ -441,7 +463,8 @@ _in_memory_data = {
     "country": "Egypt",
     "gender": "female",
     "profession": "ux designer",
-    "age": 26
+    "age": 26,
+      "cases": []
   },
   {
     "id": "141551",
@@ -451,7 +474,8 @@ _in_memory_data = {
     "country": "Egypt",
     "gender": "male",
     "profession": "fullstack",
-    "age": 28
+    "age": 28,
+      "cases": []
   },
   {
     "id": "141552",
@@ -461,7 +485,8 @@ _in_memory_data = {
     "country": "Egypt",
     "gender": "female",
     "profession": "frontend",
-    "age": 24
+    "age": 24,
+      "cases": []
   },
   {
     "id": "141553",
@@ -471,7 +496,8 @@ _in_memory_data = {
     "country": "Egypt",
     "gender": "male",
     "profession": "devops",
-    "age": 32
+    "age": 32,
+      "cases": []
   },
   {
     "id": "141554",
@@ -481,7 +507,8 @@ _in_memory_data = {
     "country": "Egypt",
     "gender": "female",
     "profession": "data scientist",
-    "age": 29
+    "age": 29,
+      "cases": []
   },
   {
     "id": "141555",
@@ -491,7 +518,8 @@ _in_memory_data = {
     "country": "Egypt",
     "gender": "male",
     "profession": "backend",
-    "age": 30
+    "age": 30,
+      "cases": []
   }
 
 
@@ -3722,3 +3750,4 @@ async def delete_doctor(doctor_code: str):
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=8000)
+
