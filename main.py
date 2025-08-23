@@ -694,7 +694,47 @@ _in_memory_data = {
                             ]
                         }
                     ]
-                }
+                },
+                {
+					"id": "141d3211156516",
+					"name": "Mazen Ahmed",
+					"dateOfAdmission": "2025-08-20T10:30:00Z",
+					"phone": "+201205621566",
+					"country": "Egypt",
+					"gender": "male",
+					"profession": "frontend",
+					"age": 23,
+					"cases": [
+						{
+							"diagnosis": [
+								{
+                                    "diagnosis": "Type 2 Diabetes Mellitus",
+                                    "prognosis": "With adherence to medication, lifestyle modifications, and regular follow-ups, the patient can maintain good glycemic control and prevent long-term complications.",
+                                    "medical-report": "Patient exhibits elevated fasting blood glucose levels over the past 3 months. HbA1c is 7.5%. No signs of diabetic retinopathy. Blood pressure is within normal range.",
+                                    "medical-treatment": "Metformin 500mg twice daily, dietary modifications, regular exercise, and quarterly check-ups.",
+                                    "schedule": "2025-08-20T10:30:00Z",
+                                    "complaint": "Frequent urination, increased thirst, and fatigue."
+                                },
+                                {
+                                    "diagnosis": "Hypertension",
+                                    "prognosis": "Condition can be well-controlled with consistent treatment and lifestyle adjustments, reducing long-term cardiovascular risk.",
+                                    "medical-report": "Blood pressure readings averaged 150/95 mmHg over the past month. No hypertensive retinopathy. ECG shows no acute changes.",
+                                    "medical-treatment": "Amlodipine 5mg once daily, reduced salt intake, weight management, and monthly monitoring.",
+                                    "schedule": "2025-08-25T11:00:00Z",
+                                    "complaint": "Occasional headaches and dizziness."
+                                },
+                                {
+                                    "diagnosis": "Hyperlipidemia",
+                                    "prognosis": "With appropriate treatment, cholesterol levels can be normalized, lowering risk of cardiovascular disease.",
+                                    "medical-report": "LDL cholesterol: 165 mg/dL, HDL: 38 mg/dL, Triglycerides: 200 mg/dL. No history of myocardial infarction.",
+                                    "medical-treatment": "Atorvastatin 20mg daily, low-fat diet, regular physical activity.",
+                                    "schedule": "2025-09-01T09:45:00Z",
+                                    "complaint": "No specific symptoms, detected during routine check-up."
+                                }
+							]
+						}
+					]
+				}
             ]
         },
         {
@@ -758,7 +798,7 @@ _in_memory_data = {
             "city": "New Lauren",
             "patient": [
                 {
-                    "id": "882402",
+                    "id": "88240466542",
                     "name": "Fernando Baker",
                     "dateOfAdmission": "1981-02-25T14:53:40",
                     "phone": "997.722.7589",
@@ -788,7 +828,55 @@ _in_memory_data = {
                             ]
                         }
                     ]
-                }
+                },
+                {
+					"id": "141516",
+					"name": "Mazen Ahmed",
+					"dateOfAdmission": "2025-08-20T10:30:00Z",
+					"phone": "+201205621566",
+					"country": "Egypt",
+					"gender": "male",
+					"profession": "frontend",
+					"age": 23,
+					"cases": [
+						{
+							"diagnosis": [
+								{
+                                    "diagnosis": "Acute Bronchitis",
+                                    "prognosis": "Condition is self-limiting in most cases and expected to improve within 1–3 weeks with treatment and rest. Low risk of complications if managed appropriately.",
+                                    "medical-report": "Patient presents with persistent cough for the past 10 days, mild fever (37.8°C), and chest congestion. No signs of pneumonia on chest X-ray. Oxygen saturation at 98%.",
+                                    "medical-treatment": "Prescribed Amoxicillin 500mg three times daily for 7 days, increased fluid intake, and rest.",
+                                    "schedule": "2025-08-22T09:15:00Z",
+                                    "complaint": "Persistent cough, mild fever, and difficulty breathing during physical activity."
+                                },
+                                {
+                                    "diagnosis": "Seasonal Allergic Rhinitis",
+                                    "prognosis": "Symptoms are expected to improve with treatment and allergen avoidance, though recurrence during pollen seasons is likely.",
+                                    "medical-report": "Patient experiences nasal congestion, sneezing, and itchy eyes during spring. Allergy test positive for pollen sensitivity.",
+                                    "medical-treatment": "Antihistamines once daily, nasal corticosteroid spray, and avoidance of allergen exposure.",
+                                    "schedule": "2025-08-28T08:30:00Z",
+                                    "complaint": "Sneezing, runny nose, and itchy eyes."
+                                },
+                                {
+                                    "diagnosis": "Iron Deficiency Anemia",
+                                    "prognosis": "Condition improves significantly with iron supplementation and dietary adjustments within a few months.",
+                                    "medical-report": "Hemoglobin: 9.5 g/dL, MCV: 72 fL. Ferritin levels low. No signs of bleeding on stool test.",
+                                    "medical-treatment": "Ferrous sulfate 325mg daily, iron-rich diet, recheck hemoglobin in 6 weeks.",
+                                    "schedule": "2025-09-05T14:00:00Z",
+                                    "complaint": "Fatigue, pale skin, and shortness of breath on exertion."
+                                },
+                                {
+                                    "diagnosis": "Gastroesophageal Reflux Disease (GERD)",
+                                    "prognosis": "Condition is manageable with lifestyle changes and medication, preventing progression to complications like Barrett’s esophagus.",
+                                    "medical-report": "Patient reports heartburn 3–4 times per week. Endoscopy shows mild esophagitis, no ulcers.",
+                                    "medical-treatment": "Omeprazole 20mg daily, avoid spicy foods, elevate head during sleep.",
+                                    "schedule": "2025-09-10T10:00:00Z",
+                                    "complaint": "Burning sensation in chest, especially after meals."
+                                }
+							]
+						}
+					]
+				}
             ]
         },
         {
@@ -852,7 +940,7 @@ _in_memory_data = {
             "city": "Lewismouth",
             "patient": [
                 {
-                    "id": "848272",
+                    "id": "8482132172",
                     "name": "Colleen Carter",
                     "dateOfAdmission": "2017-05-14T10:54:45",
                     "phone": "(415)588-6259",
@@ -882,7 +970,55 @@ _in_memory_data = {
                             ]
                         }
                     ]
-                }
+                },
+                                {
+					"id": "141516",
+					"name": "Mazen Ahmed",
+					"dateOfAdmission": "2025-08-20T10:30:00Z",
+					"phone": "+201205621566",
+					"country": "Egypt",
+					"gender": "male",
+					"profession": "frontend",
+					"age": 23,
+					"cases": [
+						{
+							"diagnosis": [
+								{
+                                    "diagnosis": "Acute Bronchitis",
+                                    "prognosis": "Condition is self-limiting in most cases and expected to improve within 1–3 weeks with treatment and rest. Low risk of complications if managed appropriately.",
+                                    "medical-report": "Patient presents with persistent cough for the past 10 days, mild fever (37.8°C), and chest congestion. No signs of pneumonia on chest X-ray. Oxygen saturation at 98%.",
+                                    "medical-treatment": "Prescribed Amoxicillin 500mg three times daily for 7 days, increased fluid intake, and rest.",
+                                    "schedule": "2025-08-22T09:15:00Z",
+                                    "complaint": "Persistent cough, mild fever, and difficulty breathing during physical activity."
+                                },
+                                {
+                                    "diagnosis": "Seasonal Allergic Rhinitis",
+                                    "prognosis": "Symptoms are expected to improve with treatment and allergen avoidance, though recurrence during pollen seasons is likely.",
+                                    "medical-report": "Patient experiences nasal congestion, sneezing, and itchy eyes during spring. Allergy test positive for pollen sensitivity.",
+                                    "medical-treatment": "Antihistamines once daily, nasal corticosteroid spray, and avoidance of allergen exposure.",
+                                    "schedule": "2025-08-28T08:30:00Z",
+                                    "complaint": "Sneezing, runny nose, and itchy eyes."
+                                },
+                                {
+                                    "diagnosis": "Iron Deficiency Anemia",
+                                    "prognosis": "Condition improves significantly with iron supplementation and dietary adjustments within a few months.",
+                                    "medical-report": "Hemoglobin: 9.5 g/dL, MCV: 72 fL. Ferritin levels low. No signs of bleeding on stool test.",
+                                    "medical-treatment": "Ferrous sulfate 325mg daily, iron-rich diet, recheck hemoglobin in 6 weeks.",
+                                    "schedule": "2025-09-05T14:00:00Z",
+                                    "complaint": "Fatigue, pale skin, and shortness of breath on exertion."
+                                },
+                                {
+                                    "diagnosis": "Gastroesophageal Reflux Disease (GERD)",
+                                    "prognosis": "Condition is manageable with lifestyle changes and medication, preventing progression to complications like Barrett’s esophagus.",
+                                    "medical-report": "Patient reports heartburn 3–4 times per week. Endoscopy shows mild esophagitis, no ulcers.",
+                                    "medical-treatment": "Omeprazole 20mg daily, avoid spicy foods, elevate head during sleep.",
+                                    "schedule": "2025-09-10T10:00:00Z",
+                                    "complaint": "Burning sensation in chest, especially after meals."
+                                }
+							]
+						}
+					]
+				}
             ]
         },
         {
@@ -3750,4 +3886,5 @@ async def delete_doctor(doctor_code: str):
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=8000)
+
 
