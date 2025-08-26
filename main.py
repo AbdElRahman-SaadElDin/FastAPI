@@ -113,7 +113,20 @@ _in_memory_data = {
     "gender": "female",
     "profession": "ux designer",
     "age": 28,
-      "cases": []
+      "cases": [
+		   {
+  "diagnosis": [
+    {
+      "diagnosis": "Hypertension (High Blood Pressure)",
+      "prognosis": "With consistent medication use, low-sodium diet, and stress management, blood pressure can remain under control and reduce the risk of cardiovascular complications.",
+      "medical-report": "Patient shows elevated blood pressure readings over multiple visits (average 150/95 mmHg). No signs of hypertensive retinopathy. Kidney function tests within normal limits.",
+      "medical-treatment": "Amlodipine 5mg once daily, reduction of salt intake, weight management, and monthly blood pressure monitoring.",
+      "schedule": "2025-08-26T12:15:00Z",
+      "complaint": "Persistent headaches, occasional dizziness, and blurred vision."
+    }
+  ]
+}
+	  ]
   },
   {
     "id": "141518",
@@ -124,7 +137,20 @@ _in_memory_data = {
     "gender": "male",
     "profession": "backend",
     "age": 32,
-      "cases": []
+      "cases": [
+		  {
+  "diagnosis": [
+    {
+      "diagnosis": "Asthma (Chronic Respiratory Condition)",
+      "prognosis": "With proper inhaler use, allergen avoidance, and routine follow-ups, the patient can maintain good lung function and minimize asthma attacks.",
+      "medical-report": "Patient reports shortness of breath and wheezing episodes, especially at night. Pulmonary function test (FEV1) indicates mild obstruction. Chest X-ray is clear. No evidence of infection.",
+      "medical-treatment": "Salbutamol inhaler as needed, Fluticasone inhaler twice daily, avoidance of dust and smoke, annual flu vaccination.",
+      "schedule": "2025-08-26T14:15:00Z",
+      "complaint": "Shortness of breath, chest tightness, and wheezing during exertion and at night."
+    }
+  ]
+}
+	  ]
   },
   {
     "id": "141519",
@@ -135,7 +161,20 @@ _in_memory_data = {
     "gender": "male",
     "profession": "fullstack",
     "age": 26,
-      "cases": []
+      "cases": [
+		  {
+  "diagnosis": [
+    {
+      "diagnosis": "Iron Deficiency Anemia",
+      "prognosis": "With proper iron supplementation, dietary changes, and monitoring, hemoglobin levels are expected to return to normal within 3–6 months.",
+      "medical-report": "Patient presents with low hemoglobin (10.2 g/dL), low ferritin levels, and pale conjunctiva. No signs of active bleeding. Stool occult blood test negative.",
+      "medical-treatment": "Oral ferrous sulfate 325mg once daily, vitamin C supplementation to improve absorption, dietary advice to include iron-rich foods, follow-up blood tests every 3 months.",
+      "schedule": "2025-08-26T11:45:00Z",
+      "complaint": "Fatigue, weakness, pale skin, and shortness of breath on exertion."
+    }
+  ]
+}
+	  ]
   },
   {
     "id": "141520",
@@ -3898,6 +3937,7 @@ async def delete_doctor(doctor_code: str):
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=8000)
+
 
 
 
