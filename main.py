@@ -351,7 +351,20 @@ _in_memory_data = {
     "gender": "female",
     "profession": "frontend",
     "age": 24,
-      "cases": []
+      "cases": [
+		  {
+  "diagnosis": [
+    {
+      "diagnosis": "Chronic Kidney Disease (Stage 2)",
+      "prognosis": "With controlled blood pressure, dietary modifications, and regular nephrology follow-ups, kidney function can be preserved and progression slowed.",
+      "medical-report": "Patient shows an eGFR of 75 mL/min/1.73m² with mild proteinuria. Blood pressure slightly elevated (145/90 mmHg). Electrolytes within normal limits. No evidence of edema.",
+      "medical-treatment": "Lisinopril 10mg once daily, low-salt and low-protein diet, regular monitoring of kidney function every 3 months, lifestyle modifications for blood pressure control.",
+      "schedule": "2025-08-28T17:00:00Z",
+      "complaint": "Occasional fatigue, mild swelling around ankles, and increased nighttime urination."
+    }
+  ]
+}
+	  ]
   },
   {
     "id": "141529",
@@ -362,7 +375,20 @@ _in_memory_data = {
     "gender": "male",
     "profession": "fullstack",
     "age": 28,
-      "cases": []
+      "cases": [
+		  {
+  "diagnosis": [
+    {
+      "diagnosis": "Chronic Kidney Disease (Stage 2)",
+      "prognosis": "With controlled blood pressure, dietary modifications, and regular nephrology follow-ups, kidney function can be preserved and progression slowed.",
+      "medical-report": "Patient shows an eGFR of 75 mL/min/1.73m² with mild proteinuria. Blood pressure slightly elevated (145/90 mmHg). Electrolytes within normal limits. No evidence of edema.",
+      "medical-treatment": "Lisinopril 10mg once daily, low-salt and low-protein diet, regular monitoring of kidney function every 3 months, lifestyle modifications for blood pressure control.",
+      "schedule": "2025-08-29T17:00:00Z",
+      "complaint": "Occasional fatigue, mild swelling around ankles, and increased nighttime urination."
+    }
+  ]
+}
+	  ]
   },
   {
     "id": "141530",
@@ -373,7 +399,20 @@ _in_memory_data = {
     "gender": "female",
     "profession": "data analyst",
     "age": 26,
-      "cases": []
+      "cases": [
+		  {
+  "diagnosis": [
+    {
+      "diagnosis": "Chronic Kidney Disease (Stage 2)",
+      "prognosis": "With controlled blood pressure, dietary modifications, and regular nephrology follow-ups, kidney function can be preserved and progression slowed.",
+      "medical-report": "Patient shows an eGFR of 75 mL/min/1.73m² with mild proteinuria. Blood pressure slightly elevated (145/90 mmHg). Electrolytes within normal limits. No evidence of edema.",
+      "medical-treatment": "Lisinopril 10mg once daily, low-salt and low-protein diet, regular monitoring of kidney function every 3 months, lifestyle modifications for blood pressure control.",
+      "schedule": "2025-08-30T17:00:00Z",
+      "complaint": "Occasional fatigue, mild swelling around ankles, and increased nighttime urination."
+    }
+  ]
+}
+	  ]
   },
   {
     "id": "141531",
@@ -384,7 +423,20 @@ _in_memory_data = {
     "gender": "male",
     "profession": "devops",
     "age": 32,
-      "cases": []
+      "cases": [
+		  {
+  "diagnosis": [
+    {
+      "diagnosis": "Chronic Kidney Disease (Stage 2)",
+      "prognosis": "With controlled blood pressure, dietary modifications, and regular nephrology follow-ups, kidney function can be preserved and progression slowed.",
+      "medical-report": "Patient shows an eGFR of 75 mL/min/1.73m² with mild proteinuria. Blood pressure slightly elevated (145/90 mmHg). Electrolytes within normal limits. No evidence of edema.",
+      "medical-treatment": "Lisinopril 10mg once daily, low-salt and low-protein diet, regular monitoring of kidney function every 3 months, lifestyle modifications for blood pressure control.",
+      "schedule": "2025-08-12T17:00:00Z",
+      "complaint": "Occasional fatigue, mild swelling around ankles, and increased nighttime urination."
+    }
+  ]
+}
+	  ]
   },
   {
     "id": "141532",
@@ -395,7 +447,20 @@ _in_memory_data = {
     "gender": "female",
     "profession": "frontend",
     "age": 23,
-      "cases": []
+      "cases": [
+		  {
+  "diagnosis": [
+    {
+      "diagnosis": "Chronic Kidney Disease (Stage 2)",
+      "prognosis": "With controlled blood pressure, dietary modifications, and regular nephrology follow-ups, kidney function can be preserved and progression slowed.",
+      "medical-report": "Patient shows an eGFR of 75 mL/min/1.73m² with mild proteinuria. Blood pressure slightly elevated (145/90 mmHg). Electrolytes within normal limits. No evidence of edema.",
+      "medical-treatment": "Lisinopril 10mg once daily, low-salt and low-protein diet, regular monitoring of kidney function every 3 months, lifestyle modifications for blood pressure control.",
+      "schedule": "2025-08-18T17:00:00Z",
+      "complaint": "Occasional fatigue, mild swelling around ankles, and increased nighttime urination."
+    }
+  ]
+}
+	  ]
   },
   {
     "id": "141533",
@@ -406,7 +471,20 @@ _in_memory_data = {
     "gender": "male",
     "profession": "backend",
     "age": 29,
-      "cases": []
+      "cases": [
+		  {
+  "diagnosis": [
+    {
+      "diagnosis": "Chronic Kidney Disease (Stage 2)",
+      "prognosis": "With controlled blood pressure, dietary modifications, and regular nephrology follow-ups, kidney function can be preserved and progression slowed.",
+      "medical-report": "Patient shows an eGFR of 75 mL/min/1.73m² with mild proteinuria. Blood pressure slightly elevated (145/90 mmHg). Electrolytes within normal limits. No evidence of edema.",
+      "medical-treatment": "Lisinopril 10mg once daily, low-salt and low-protein diet, regular monitoring of kidney function every 3 months, lifestyle modifications for blood pressure control.",
+      "schedule": "2025-08-08T17:00:00Z",
+      "complaint": "Occasional fatigue, mild swelling around ankles, and increased nighttime urination."
+    }
+  ]
+}
+	  ]
   },
   {
     "id": "141534",
@@ -4015,6 +4093,7 @@ async def delete_doctor(doctor_code: str):
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=8000)
+
 
 
 
