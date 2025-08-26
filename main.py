@@ -52,8 +52,8 @@ _in_memory_data = {
       "name": "AbdElRahman Saad",
       "Age": 24,
       "phone": "+201119944899",
-      "profession": "Software Engineer",
-      "specialty": "Data Science",
+      "profession": "Physician",
+      "specialty": "Orthopedics",
       "gender": "male",
       "email": "abdelrahmansaad@gmail.com",
       "password": "SaadSaadSaad@@777",
@@ -89,7 +89,19 @@ _in_memory_data = {
                   "complaint": "Persistent cough, mild fever, and difficulty breathing during physical activity."
                 }
               ]
-            }
+            },
+			  {
+  "diagnosis": [
+    {
+      "diagnosis": "Hypertension (High Blood Pressure)",
+      "prognosis": "With consistent medication use, low-sodium diet, and stress management, blood pressure can remain under control and reduce the risk of cardiovascular complications.",
+      "medical-report": "Patient shows elevated blood pressure readings over multiple visits (average 150/95 mmHg). No signs of hypertensive retinopathy. Kidney function tests within normal limits.",
+      "medical-treatment": "Amlodipine 5mg once daily, reduction of salt intake, weight management, and monthly blood pressure monitoring.",
+      "schedule": "2025-08-26T09:00:00Z",
+      "complaint": "Persistent headaches, occasional dizziness, and blurred vision."
+    }
+  ]
+}
           ]
         },
   {
@@ -3886,6 +3898,7 @@ async def delete_doctor(doctor_code: str):
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=8000)
+
 
 
 
