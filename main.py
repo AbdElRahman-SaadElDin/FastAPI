@@ -185,7 +185,20 @@ _in_memory_data = {
     "gender": "female",
     "profession": "frontend",
     "age": 24,
-      "cases": []
+      "cases": [
+		  {
+  "diagnosis": [
+    {
+      "diagnosis": "Gastritis",
+      "prognosis": "With medication adherence, dietary changes, and stress management, symptoms are expected to improve significantly within weeks, reducing the risk of ulcers.",
+      "medical-report": "Patient reports epigastric pain and nausea. Endoscopy reveals mild gastric mucosal inflammation. H. pylori test is negative. No evidence of bleeding.",
+      "medical-treatment": "Omeprazole 20mg once daily for 6 weeks, avoidance of spicy and acidic foods, reduction of caffeine and alcohol intake, stress management techniques.",
+      "schedule": "2025-08-26T16:00:00Z",
+      "complaint": "Burning stomach pain after meals, bloating, nausea, and occasional loss of appetite."
+    }
+  ]
+}
+	  ]
   },
   {
     "id": "141521",
@@ -196,7 +209,20 @@ _in_memory_data = {
     "gender": "male",
     "profession": "devops",
     "age": 30,
-      "cases": []
+      "cases": [
+		  {
+  "diagnosis": [
+    {
+      "diagnosis": "Migraine Headache",
+      "prognosis": "With preventive therapy, lifestyle modifications, and trigger avoidance, migraine frequency and intensity can be significantly reduced.",
+      "medical-report": "Patient experiences recurrent unilateral throbbing headaches accompanied by nausea and photophobia. Neurological exam is normal. MRI brain shows no abnormalities.",
+      "medical-treatment": "Sumatriptan 50mg as needed during attacks, prophylactic propranolol 40mg twice daily, avoidance of known triggers such as caffeine and irregular sleep, regular hydration.",
+      "schedule": "2025-08-26T13:30:00Z",
+      "complaint": "Severe headache episodes with nausea, sensitivity to light, and occasional vomiting."
+    }
+  ]
+}
+	  ]
   },
   {
     "id": "141522",
@@ -207,7 +233,20 @@ _in_memory_data = {
     "gender": "female",
     "profession": "data scientist",
     "age": 27,
-      "cases": []
+      "cases": [
+		  {
+  "diagnosis": [
+    {
+      "diagnosis": "Stable Angina Pectoris",
+      "prognosis": "With consistent medication, risk factor control, and regular cardiology follow-ups, the patient can maintain good quality of life and reduce the risk of heart attack.",
+      "medical-report": "Patient reports chest discomfort on exertion, relieved by rest. ECG shows ST-segment depression during stress test. Lipid profile indicates elevated LDL cholesterol.",
+      "medical-treatment": "Aspirin 75mg once daily, Atorvastatin 20mg once daily, Nitroglycerin sublingual as needed for chest pain, advice on regular exercise and low-fat diet.",
+      "schedule": "2025-08-26T15:00:00Z",
+      "complaint": "Chest pain during physical activity, shortness of breath on exertion, and occasional fatigue."
+    }
+  ]
+}
+	  ]
   },
   {
     "id": "141523",
@@ -218,7 +257,20 @@ _in_memory_data = {
     "gender": "male",
     "profession": "backend",
     "age": 29,
-      "cases": []
+      "cases": [
+		  {
+  "diagnosis": [
+    {
+      "diagnosis": "Osteoarthritis of the Knee",
+      "prognosis": "With regular physiotherapy, weight management, and pain control, the patient can maintain mobility and delay disease progression.",
+      "medical-report": "Patient complains of chronic knee pain, stiffness in the morning, and reduced range of motion. X-ray shows joint space narrowing and mild osteophyte formation.",
+      "medical-treatment": "Paracetamol 1g as needed, physiotherapy sessions twice weekly, weight reduction program, use of supportive knee brace, follow-up every 6 months.",
+      "schedule": "2025-08-26T10:15:00Z",
+      "complaint": "Knee pain worsening with activity, stiffness after rest, and occasional swelling."
+    }
+  ]
+}
+	  ]
   },
   {
     "id": "141524",
@@ -229,7 +281,20 @@ _in_memory_data = {
     "gender": "female",
     "profession": "frontend",
     "age": 25,
-      "cases": []
+      "cases": [
+		  {
+  "diagnosis": [
+    {
+      "diagnosis": "Eczema (Atopic Dermatitis)",
+      "prognosis": "With regular skin care, trigger avoidance, and prescribed medication, flare-ups can be minimized and the patient can maintain good skin health.",
+      "medical-report": "Patient presents with itchy, dry, and inflamed patches on the forearms and behind the knees. No signs of infection. Family history of allergic conditions noted.",
+      "medical-treatment": "Topical corticosteroid cream twice daily for 2 weeks, emollient moisturizers applied frequently, antihistamine at night for itching, follow-up in 1 month.",
+      "schedule": "2025-08-26T12:30:00Z",
+      "complaint": "Intense itching, redness, and dry skin patches worsening at night."
+    }
+  ]
+}
+	  ]
   },
   {
     "id": "141525",
@@ -240,7 +305,20 @@ _in_memory_data = {
     "gender": "male",
     "profession": "mobile developer",
     "age": 31,
-      "cases": []
+      "cases": [
+		  {
+  "diagnosis": [
+    {
+      "diagnosis": "Chronic Kidney Disease (Stage 2)",
+      "prognosis": "With controlled blood pressure, dietary modifications, and regular nephrology follow-ups, kidney function can be preserved and progression slowed.",
+      "medical-report": "Patient shows an eGFR of 75 mL/min/1.73m² with mild proteinuria. Blood pressure slightly elevated (145/90 mmHg). Electrolytes within normal limits. No evidence of edema.",
+      "medical-treatment": "Lisinopril 10mg once daily, low-salt and low-protein diet, regular monitoring of kidney function every 3 months, lifestyle modifications for blood pressure control.",
+      "schedule": "2025-08-26T17:00:00Z",
+      "complaint": "Occasional fatigue, mild swelling around ankles, and increased nighttime urination."
+    }
+  ]
+}
+	  ]
   },
   {
     "id": "141526",
@@ -3937,6 +4015,7 @@ async def delete_doctor(doctor_code: str):
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=8000)
+
 
 
 
